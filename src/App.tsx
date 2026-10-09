@@ -1,33 +1,24 @@
-import { useState } from 'react'
+
 import { KEPLISTA} from './adat'
 import './App.css'
-import KisKep from './component/Galeria'
-import NagyKep from './component/NagyKep'
 
-function App() {
-  const [i,setI]=useState(0)
-  function kepKivalaszt(index:number){
-    console.log(index)
-    setI(index)
-  }
-  function kepBalra(){
-    setI(index => (index - 1 + KEPLISTA.length) % KEPLISTA.length)
-  }
-  function kepJobbra(){
-    setI(index => (index + 1 + KEPLISTA.length) % KEPLISTA.length)
-  }
-  return (
+import NagyKep from './component/NagyKep'
+import Galeria from './component/Galeria'
+import { KepContext, useKepContext } from './contexts/KepContext'
+
+function App() {  
+  const { i } = useKepContext()
+
+  
+ return (
     <>
-      <header>Képek</header>
-      <section>
-        <button className="bal" onClick={kepBalra}>🠜</button>        
-        <NagyKep kepem={KEPLISTA[i]}/>
-        <button className="jobb" onClick={kepJobbra}>🠞</button>
-      </section>
-      <article>
-        <KisKep lista={KEPLISTA} kepKivalaszt={kepKivalaszt}/>
-      </article>
-      <footer><p>Szuda Tibor Szilveszter</p></footer>
+      <header><h1>Képgaléria</h1></header>
+      <main>
+
+        <NagyKep kepem={KEPLISTA[i]}   />
+        <Galeria  lista={KEPLISTA} i={i} />
+      </main>
+      <footer>Vén Dávid</footer>
     </>
   )
 }

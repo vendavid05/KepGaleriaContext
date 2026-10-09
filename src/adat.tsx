@@ -1,23 +1,23 @@
 export interface KepTipus{
     id: number
-    title: string
-    src: string
+    leiras: string
+    kep: string
 }
 
 export const KEPLISTA:KepTipus[]=[
     {
         id: 1,
-        title: "Michael Jordan",
-        src: '/kepek/crying_jordan.jpg' 
+        leiras: "Michael Jordan",
+        kep: '/kepek/crying_jordan.jpg' 
     },
     {
         id: 2,
-        title: "White dude",
-        src: '/kepek/crying_white_dude.jpg' 
+        leiras: "White dude",
+        kep: '/kepek/crying_white_dude.jpg' 
     },
     {
         id: 3,
-        title: "Black Dude",
-        src: '/kepek/crying_black_dude.jpg' 
+        leiras: "Black Dude",
+        kep: '/kepek/crying_black_dude.jpg' 
     }
 ]

@@ -3,16 +3,17 @@ import KisKep from "./Kiskep";
 
 interface GaleriaProps{
     lista: KepTipus[],
-    kepKivalaszt:(index:number)=>void
+    i:number
 }
-export default function Kepek({lista,kepKivalaszt}:GaleriaProps){
+function Galeria({lista,i}:GaleriaProps){
     return(
-        <>
+        <div className='galeria'>
             {
                 lista.map((e,i)=>{
-                    return <KisKep kepem={e} key={i} index={i} kepKivalaszt={kepKivalaszt}/>
+                    return <KisKep kepem={e} index={i} key={i} isAktiv={i === i} />
                 })
             }
-        </>
+        </div>
     )
 }
+export default Galeria
