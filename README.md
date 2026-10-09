@@ -1,78 +1,54 @@
-# React + TypeScript + Vite
+Futtatasi parancsok
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+npm install
+npm run dev        # fejlesztői szerver
+npm run build      # éles build (TypeScript-ellenőrzéssel)
+npm run preview    # a lebuildelt oldal megnézése
 
-Currently, two official plugins are available:
+public/
+  └-- kepek/                  # Statikus képfájlok tárolója
+src/
+  ├-contexts/
+  │   └--GaleriaContext.tsx  # Globális állapotkezelés (Context, Provider, custom hook)
+  ├--components/
+  │   ├--NagyKep.tsx         # Kiemelt kép és a léptetőgombok komponense
+  │   ├--Galeria.tsx         # Kisképek rácsa (grid tároló)
+  │   └--KisKep.tsx          # Egyetlen kiskép előnézete
+  ├--adatok.tsx              # Típusdefiníciók (KepAdat) és alapértelmezett képadatok
+  ├--App.tsx                 # Az alkalmazás főszerkezete és elrendezése
+  └--main.tsx                # Belépési pont (az App becsomagolása a Providerrel)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+  Model:
+  -Előállítjuk a  program aktuális állapotát 
+  -Adatokon végez műveleteket
+  -Getterek 
+  -Setter 
+  -Tagfüggvények 
+  -NINCS: Megjeleníteni 
+  Kepgaleriaban:
+  LISTA  
+  aktIndex 
 
-## React Compiler
+  Controller:
+  -Kapcsolatot tart a M és V között 
+  -Megfoghatjuk azokat a tárolókat, amikbe pakoljuk a viewt 
+  -Példányosítja  a View-t  
+  -Példányosítja Model-t is 
+  -Feliratkozik az eseménykezelőkre 
+  -Hívja a modell és a view tagfüggvényeit. ű
+  Kepgaleriaban:
+  -Példányosítja  a View-t  
+  -Példányosítja Model-t is 
+  -Feliratkozik az eseménykezelőkre
+  -Hívja a modell és a view tagfüggvényeit. 
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+  View:
+  -Megjeleníti az adatokat 
+  -HTML elemek 
+  -Eseménykezelők,  
+  -saját események 
+    Kepgaleriaban:
+  -Kep – egyetlen képet jelenít meg 
+  -Galeria - összes kisképet 
+  -NagyKep - felső kép, a léptetőgombokkal 
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
-
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
